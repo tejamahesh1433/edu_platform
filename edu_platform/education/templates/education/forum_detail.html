@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/teacher_dashboard.css' %}">
+    <title>Forum Detail</title>
+</head>
+<body>
+    <header>
+        <h1>{{ forum.title }}</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Forum Posts</h2>
+            <ul>
+                {% for post in posts %}
+                <li><a href="#">{{ post.author.username }}: {{ post.content }}</a></li>
+                {% endfor %}
+            </ul>
+            <a href="{% url 'create_post' forum.id %}">Create New Post</a>
+        </section>
+    </main>
+</body>
+</html>

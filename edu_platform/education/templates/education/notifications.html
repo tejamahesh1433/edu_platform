@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/teacher_dashboard.css' %}">
+    <title>Notifications</title>
+</head>
+<body>
+    <header>
+        <h1>Notifications</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Your Notifications</h2>
+            <ul>
+                {% for notification in notifications %}
+                <li>{{ notification.message }} - {{ notification.created_at }}</li>
+                {% if not notification.read %}
+                <a href="{% url 'mark_notification_read' notification.id %}">Mark as read</a>
+                {% endif %}
+                {% endfor %}
+            </ul>
+        </section>
+    </main>
+</body>
+</html>

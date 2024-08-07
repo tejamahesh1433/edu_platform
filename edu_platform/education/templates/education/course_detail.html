@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/teacher_dashboard.css' %}">
+    <title>Course Detail</title>
+</head>
+<body>
+    <header>
+        <h1>{{ course.title }}</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Course Description</h2>
+            <p>{{ course.description }}</p>
+        </section>
+        <section>
+            <h2>Assessments</h2>
+            <ul>
+                {% for assessment in assessments %}
+                <li><a href="{% url 'assessment_detail' assessment.id %}">{{ assessment.title }}</a></li>
+                {% endfor %}
+            </ul>
+        </section>
+        <section>
+            <h2>Forums</h2>
+            <ul>
+                {% for forum in forums %}
+                <li><a href="{% url 'forum_detail' forum.id %}">{{ forum.title }}</a></li>
+                {% endfor %}
+            </ul>
+        </section>
+    </main>
+</body>
+</html>

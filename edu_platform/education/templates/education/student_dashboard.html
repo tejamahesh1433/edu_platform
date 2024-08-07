@@ -1,0 +1,116 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/student_dashboard.css' %}">
+    <title>Advanced Student Dashboard</title>
+</head>
+<body>
+    <header>
+        <h1>Welcome, {{ user.username }}!</h1>
+        <div class="hamburger-menu" onclick="toggleSidebar()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/profile/">Profile</a></li>
+                <li><a href="/settings/">Settings</a></li>
+                <li>
+                    <form method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button type="submit" style="background:none;border:none;color:blue;cursor:pointer;">Logout</button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div class="sidebar">
+        <a href="/dashboard/">Dashboard Overview</a>
+        <a href="/adaptive_learning/">Adaptive Learning Paths</a>
+        <a href="/virtual_classroom/">Virtual Classroom</a>
+        <a href="/progress_tracker/">Learning Progress</a>
+        <a href="/game_based_learning/">Game-Based Learning</a>
+        <a href="/augmented_reality/">Augmented Reality</a>
+        <a href="/forums/">Interactive Forums</a>
+        <a href="/multimedia_library/">Multimedia Library</a>
+        <a href="/collaboration_tools/">Peer Collaboration</a>
+        <a href="/external_tools/">Integrated Learning Tools</a>
+        <a href="/schedule/">Personal Schedule</a>
+        <a href="/mental_health_resources/">Mental Health Support</a>
+    </div>
+    <div class="main-content">
+        <div class="notifications">
+            <p>You have new notifications!</p>
+        </div>
+        <main>
+            <section class="personal-feed">
+                <h2>Personalized Learning Feed</h2>
+                <div id="feed">Loading personalized content...</div>
+            </section>
+            <section class="adaptive-learning">
+                <h2>Adaptive Learning Paths</h2>
+                <p>Customized courses that adapt to your learning pace and style:</p>
+                <a href="/adaptive_learning/">Explore Adaptive Paths</a>
+            </section>
+            <section class="virtual-classroom">
+                <h2>Virtual Classroom</h2>
+                <p>Join real-time virtual classes with interactive tools:</p>
+                <a href="/virtual_classroom/">Join a Class</a>
+            </section>
+            <section class="progress-tracker">
+                <h2>Detailed Learning Progress</h2>
+                <div id="progressVisualization">Progress charts loading...</div>
+            </section>
+            <section class="game-based-learning">
+                <h2>Game-Based Learning Modules</h2>
+                <p>Engage in educational games that make learning fun and interactive:</p>
+                <a href="/game_based_learning/">Play Games</a>
+            </section>
+            <section class="augmented-reality">
+                <h2>Augmented Reality Experiences</h2>
+                <p>Use AR to explore complex subjects in a more interactive and engaging way:</p>
+                <a href="/augmented_reality/">Start AR Experience</a>
+            </section>
+            <section class="course-forum">
+                <h2>Interactive Forums</h2>
+                <a href="/forums/">Participate in Discussions</a>
+            </section>
+            <section class="multimedia-library">
+                <h2>Multimedia Learning Library</h2>
+                <p>Access video tutorials, podcasts, and interactive simulations:</p>
+                <a href="/multimedia_library/">Explore Library</a>
+            </section>
+            <section class="peer-collaboration">
+                <h2>Peer Collaboration Tools</h2>
+                <p>Work on projects and study with peers online:</p>
+                <a href="/collaboration_tools/">Collaborate Now</a>
+            </section>
+            <section class="external-tools">
+                <h2>Integrated Learning Tools</h2>
+                <p>Access tools like Khan Academy, Coursera, or Codecademy:</p>
+                <ul>
+                    <li><a href="https://www.khanacademy.org">Khan Academy</a></li>
+                    <li><a href="https://www.coursera.org">Coursera</a></li>
+                    <li><a href="https://www.codecademy.com">Codecademy</a></li>
+                </ul>
+            </section>
+            <section class="schedule">
+                <h2>Your Personal Schedule</h2>
+                <div id="calendar">Interactive calendar loading...</div>
+            </section>
+            <section class="mental-health">
+                <h2>Mental Health Support</h2>
+                <a href="/mental_health_resources/">Access Support Materials</a>
+            </section>
+        </main>
+    </div>
+    <footer>
+        <p>© 2024 EduPlatform. All rights reserved.</p>
+    </footer>
+    <script src="{% static 'js/student_dashboard.js' %}"></script>
+</body>
+</html>

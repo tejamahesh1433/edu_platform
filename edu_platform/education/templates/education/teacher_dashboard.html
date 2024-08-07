@@ -1,0 +1,127 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/teacher_dashboard.css' %}">
+    <title>Advanced Teacher Dashboard</title>
+</head>
+<body>
+    <header>
+        <h1>Welcome, {{ user.username }}!</h1>
+        <div class="hamburger-menu" onclick="toggleSidebar()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/profile/">Profile</a></li>
+                <li><a href="/settings/">Settings</a></li>
+                <li>
+                    <form method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button type="submit" style="background:none;border:none;color:blue;cursor:pointer;">Logout</button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="sidebar">
+        <a href="/dashboard/">Dashboard Overview</a>
+        <a href="/courses/manage">Manage Courses</a>
+        <a href="/grading/">Grading and Assessments</a>
+        <a href="/assessment_analytics/">Assessment Analytics</a>
+        <a href="/ai_insights/">AI-Driven Insights</a>
+        <a href="/content_creation/">Create Interactive Content</a>
+        <a href="/live_tools/">Live Teaching Tools</a>
+        <a href="/automation/tools">Classroom Automation</a>
+        <a href="/student_engagement/">Student Engagement</a>
+        <a href="/resource/development">Resource Development</a>
+        <a href="/collaboration/">Collaborative Networks</a>
+        <a href="/improvement/programs">Professional Development</a>
+    </div>
+    <div class="main-content">
+        <div class="notifications">
+            <p>Latest updates and alerts!</p>
+        </div>
+        <main>
+            <section class="dashboard-overview">
+                <h2>Dashboard Overview</h2>
+                <div class="quick-links">
+                    <a href="/dashboard/insights">Performance Insights</a>
+                    <a href="/dashboard/reports">Generate Reports</a>
+                    <a href="/dashboard/scheduling">Class Scheduling</a>
+                </div>
+            </section>
+            <section class="course-management">
+                <h2>Manage Your Courses</h2>
+                <div class="management-tools">
+                    <a href="/courses/manage">Course Settings</a>
+                    <a href="/courses/syllabus">Edit Syllabus</a>
+                    <a href="/courses/enrollment">Manage Enrollment</a>
+                </div>
+            </section>
+            <section class="grading-system">
+                <h2>Grading and Assessments</h2>
+                <div class="grading-tools">
+                    <a href="/grading/">Access Grading</a>
+                    <a href="/assessments/create">Create Assessments</a>
+                </div>
+            </section>
+            <section class="assessment-analytics">
+                <h2>Assessment Analytics</h2>
+                <div id="assessmentDataVisuals">Loading data...</div>
+            </section>
+            <section class="ai-driven-insights">
+                <h2>AI-Driven Educational Insights</h2>
+                <p>Gain insights from AI analysis on student learning patterns:</p>
+                <a href="/ai_insights/">View Insights</a>
+            </section>
+            <section class="interactive-content">
+                <h2>Create Interactive Content</h2>
+                <div class="content-creation-tools">
+                    <a href="/content_creation/">Create Content</a>
+                    <a href="/interactive_quizzes/">Design Interactive Quizzes</a>
+                </div>
+            </section>
+            <section class="live-teaching-tools">
+                <h2>Live Teaching Tools</h2>
+                <p>Engage with students in real-time through interactive sessions:</p>
+                <a href="/live_tools/">Access Live Tools</a>
+            </section>
+            <section class="classroom-automation">
+                <h2>Classroom Automation</h2>
+                <p>Automate repetitive tasks to focus more on teaching:</p>
+                <a href="/automation/tools">Explore Automation Tools</a>
+            </section>
+            <section class="student-engagement">
+                <h2>Enhance Student Engagement</h2>
+                <p>Use various methods to keep students engaged and motivated:</p>
+                <a href="/student_engagement/">Learn More</a>
+            </section>
+            <section class="resource-development">
+                <h2>Resource Development</h2>
+                <p>Develop and share educational resources with your peers:</p>
+                <a href="/resource/development">Access Resources</a>
+            </section>
+            <section class="collaborative-networks">
+                <h2>Collaborative Networks</h2>
+                <p>Join networks of educators for collaborative teaching:</p>
+                <a href="/collaboration/">Join Networks</a>
+            </section>
+            <section class="professional-development">
+                <h2>Professional Development</h2>
+                <p>Participate in programs to enhance your teaching skills:</p>
+                <a href="/improvement/programs">Explore Programs</a>
+            </section>
+        </main>
+    </div>
+    <footer>
+        <p>© 2024 EduPlatform. All rights reserved.</p>
+    </footer>
+    <script src="{% static 'js/teacher_dashboard.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/teacher_dashboard.css' %}">
+    <title>Manage Courses</title>
+</head>
+<body>
+    <header>
+        <h1>Manage Your Courses</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Your Courses</h2>
+            <ul>
+                {% for course in courses %}
+                <li><a href="{% url 'course_detail' course.id %}">{{ course.title }}</a></li>
+                {% endfor %}
+            </ul>
+        </section>
+    </main>
+</body>
+</html>
