@@ -1,82 +1,100 @@
-/* Basic styling for the dashboard */
+/* static/css/teacher_dashboard.css */
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
 }
+
 header {
-    background-color: #333;
+    background-color: #5cb85c;
     color: white;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    padding: 10px;
+    text-align: center;
+    position: relative;
 }
-nav ul {
-    list-style: none;
-    padding: 0;
+
+header h1 {
     margin: 0;
-    display: flex;
 }
-nav ul li {
-    margin: 0 10px;
-}
-nav ul li a {
-    color: white;
-    text-decoration: none;
-}
+
 .hamburger-menu {
-    display: none;
+    display: flex;
     flex-direction: column;
     cursor: pointer;
+    position: absolute;
+    top: 10px;
+    left: 10px;
 }
+
 .hamburger-menu div {
     width: 25px;
     height: 3px;
     background-color: white;
     margin: 4px 0;
 }
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
 .sidebar {
-    display: none;
     position: fixed;
     top: 0;
-    left: 0;
-    width: 250px;
+    left: -220px; /* Hide the sidebar off the screen */
     height: 100%;
+    width: 200px;
     background-color: #333;
-    padding-top: 60px;
-    transition: 0.3s;
-}
-.sidebar a {
-    padding: 10px 15px;
-    text-decoration: none;
-    font-size: 18px;
     color: white;
-    display: block;
-    transition: 0.3s;
+    padding-top: 60px;
+    transition: left 0.3s; /* Smooth transition for the sidebar */
 }
-.sidebar a:hover {
-    background-color: #575757;
-}
-.main-content {
-    margin-left: 0;
-    transition: margin-left 0.3s;
-}
-.open-sidebar .sidebar {
-    display: block;
-}
-.open-sidebar .main-content {
-    margin-left: 250px;
-}
-@media (max-width: 768px) {
-    nav ul {
-        display: none;
+
+.sidebar.active {
+    left: 0; /* Slide the sidebar into view */
     }
-    .hamburger-menu {
-        display: flex;
+    
+    .sidebar a {
+        display: block;
+        color: white;
+        padding: 10px;
+        text-decoration: none;
     }
-    .open-sidebar nav ul {
-        display: flex;
-        flex-direction: column;
+    
+    .sidebar a:hover {
+        background-color: #575757;
     }
-}
+    
+    .main-content {
+        margin-left: 220px;
+        padding: 20px;
+    }
+    
+    .notifications {
+        background-color: #f9edbe;
+        border-left: 6px solid #f0c36d;
+        margin-bottom: 20px;
+        padding: 10px;
+    }
+    
+    section {
+        margin-bottom: 20px;
+    }
+    
+    section h2 {
+        margin-top: 0;
+    }
+    

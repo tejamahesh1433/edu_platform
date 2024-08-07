@@ -1,0 +1,37 @@
+/* static/css/course_detail.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    padding: 20px;
+}
+
+h1 {
+    color: #333;
+}
+
+.course-info {
+    background-color: #f4f4f4;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.lessons {
+    list-style-type: none;
+    padding: 0;
+}
+
+.lessons li {
+    background-color: #fff;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.lessons li:last-child {
+    border-bottom: none;
+}
