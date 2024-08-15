@@ -12,11 +12,39 @@
         <h1>Create a New Comment</h1>
     </header>
     <main>
-        <form method="post">
-            {% csrf_token %}
-            <textarea name="content" rows="5" cols="40" required></textarea><br>
-            <button type="submit">Submit</button>
-        </form>
+        <section class="user-info">
+            <img src="{{ user.profile_picture.url }}" alt="{{ user.username }}" class="profile-picture">
+            <p>{{ user.username }}</p>
+        </section>
+        <section class="comment-form">
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="content">Your Comment:</label><br>
+                    <div class="formatting-tools">
+                        <button type="button" onclick="applyFormatting('bold')"><strong>B</strong></button>
+                        <button type="button" onclick="applyFormatting('italic')"><em>I</em></button>
+                        <button type="button" onclick="applyFormatting('underline')"><u>U</u></button>
+                    </div>
+                    <textarea name="content" id="content" rows="5" cols="40" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Submit</button>
+            </form>
+        </section>
+        <section class="previous-comments">
+            <h2>Previous Comments</h2>
+            <ul>
+                {% for comment in previous_comments %}
+                <li>
+                    <strong>{{ comment.user.username }}</strong> - {{ comment.created_at }}<br>
+                    {{ comment.content }}
+                </li>
+                {% empty %}
+                <p>No comments yet.</p>
+                {% endfor %}
+            </ul>
+        </section>
     </main>
 </body>
+<script src="{% static 'js/create_comment.js' %}"></script>
 </html>

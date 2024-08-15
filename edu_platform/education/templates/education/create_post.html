@@ -12,11 +12,41 @@
         <h1>Create a New Post</h1>
     </header>
     <main>
-        <form method="post">
-            {% csrf_token %}
-            <textarea name="content" rows="5" cols="40" required></textarea><br>
-            <button type="submit">Submit</button>
-        </form>
+        <section class="post-form">
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="title">Post Title:</label><br>
+                    <input type="text" name="title" id="title" required><br>
+                </div>
+                <div class="form-group">
+                    <label for="category">Category:</label><br>
+                    <select name="category" id="category">
+                        <option value="general">General</option>
+                        <option value="announcement">Announcement</option>
+                        <option value="question">Question</option>
+                    </select><br>
+                </div>
+                <div class="form-group">
+                    <label for="content">Content:</label><br>
+                    <div class="formatting-tools">
+                        <button type="button" onclick="applyFormatting('bold')"><strong>B</strong></button>
+                        <button type="button" onclick="applyFormatting('italic')"><em>I</em></button>
+                        <button type="button" onclick="applyFormatting('underline')"><u>U</u></button>
+                    </div>
+                    <textarea name="content" id="content" rows="10" cols="40" required></textarea>
+                </div>
+                <button type="button" onclick="previewPost()">Preview</button>
+                <button type="submit" class="submit-btn">Submit</button>
+            </form>
+        </section>
+        <section class="post-preview">
+            <h2>Post Preview</h2>
+            <div id="preview-title"></div>
+            <div id="preview-category"></div>
+            <div id="preview-content"></div>
+        </section>
     </main>
+    <script src="{% static 'js/create_post.js' %}"></script>
 </body>
 </html>

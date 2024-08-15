@@ -1,8 +1,5 @@
-# education/urls.py
-
 from django.urls import path
 from . import views
-from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('student_dashboard/', views.student_dashboard, name='student_dashboard'),
@@ -15,6 +12,10 @@ urlpatterns = [
     path('post/<int:post_id>/create_comment/', views.create_comment, name='create_comment'),
     path('notifications/', views.notifications, name='notifications'),
     path('notifications/mark_read/<int:notification_id>/', views.mark_notification_read, name='mark_notification_read'),
-    path('login/', views.CustomLoginView.as_view(), name='login'),  # Custom login view
-    path('logout/', views.CustomLogoutView.as_view(), name='logout'),  # Custom logout view
+    path('login/', views.CustomLoginView.as_view(), name='login'),
+    path('logout/', views.CustomLogoutView.as_view(), name='logout'),
+    path('dashboard/insights/', views.dashboard_insights, name='dashboard_insights'),
+    path('dashboard/reports/', views.dashboard_reports, name='dashboard_reports'), 
+    path('adaptive_learning/', views.adaptive_learning, name='adaptive_learning'),  # Ensure this line is included
+
 ]

@@ -1,0 +1,60 @@
+<!-- templates/education/dashboard_overview.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/dashboard_overview.css' %}">
+    <title>Dashboard Overview</title>
+</head>
+<body>
+    <header>
+        <h1>Dashboard Overview</h1>
+        <div class="hamburger-menu" onclick="toggleSidebar()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/profile/">Profile</a></li>
+                <li><a href="/settings/">Settings</a></li>
+                <li>
+                    <form method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button type="submit" style="background:none;border:none;color:blue;cursor:pointer;">Logout</button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div class="sidebar" id="sidebar">
+        <a href="/student_dashboard/">Student Dashboard</a>
+        <a href="/teacher_dashboard/">Teacher Dashboard</a>
+        <a href="/dashboard/insights/">Dashboard Insights</a>
+        <a href="/dashboard/reports/">Dashboard Reports</a>
+        <a href="/adaptive_learning/">Adaptive Learning</a>
+        <!-- Add other sidebar links as needed -->
+    </div>
+    <div class="main-content">
+        <div class="notifications">
+            <p>You have new notifications!</p>
+        </div>
+        <main>
+            <section class="overview">
+                <h2>Overview</h2>
+                <p>Welcome to your dashboard. Here you can find a summary of your activities.</p>
+            </section>
+            <section class="quick-links">
+                <h2>Quick Links</h2>
+                <p>Access frequently used tools and resources from here.</p>
+            </section>
+        </main>
+    </div>
+    <footer>
+        <p>© 2024 EduPlatform. All rights reserved.</p>
+    </footer>
+    <script src="{% static 'js/dashboard_overview.js' %}"></script>
+</body>
+</html>

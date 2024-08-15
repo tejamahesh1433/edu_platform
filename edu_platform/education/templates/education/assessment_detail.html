@@ -5,26 +5,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/teacher_dashboard.css' %}">
-    <title>Assessment Detail</title>
+    <title>Assessment Detail - {{ assessment.title }}</title>
 </head>
 <body>
     <header>
         <h1>{{ assessment.title }}</h1>
     </header>
     <main>
-        <section>
-            <h2>Assessment Description</h2>
-            <p>{{ assessment.description }}</p>
-            <p>Due Date: {{ assessment.due_date }}</p>
+        <section class="assessment-overview">
+            <h2>Assessment Overview</h2>
+            <p><strong>Description:</strong> {{ assessment.description }}</p>
+            <p><strong>Due Date:</strong> {{ assessment.due_date }}</p>
+            <p><strong>Total Marks:</strong> {{ assessment.total_marks }}</p>
+            <p><strong>Status:</strong> {% if assessment.is_published %}Published{% else %}Draft{% endif %}</p>
         </section>
-        <section>
-            <h2>Grades</h2>
+        <section class="student-submissions">
+            <h2>Student Submissions</h2>
             <ul>
-                {% for grade in grades %}
-                <li>{{ grade.student.username }}: {{ grade.grade }}</li>
+                {% for submission in submissions %}
+                <li>
+                    <strong>{{ submission.student.username }}</strong> - 
+                    <a href="{{ submission.file.url }}">Download Submission</a> 
+                    - Submitted on {{ submission.submitted_at }}
+                </li>
+                {% empty %}
+                <p>No submissions yet.</p>
                 {% endfor %}
             </ul>
         </section>
+        <section class="grades-feedback">
+            <h2>Grades and Feedback</h2>
+            <ul>
+                {% for grade in grades %}
+                <li>
+                    <strong>{{ grade.student.username }}</strong>: {{ grade.grade }} / {{ assessment.total_marks }}<br>
+                    <strong>Feedback:</strong> {{ grade.feedback|default:"No feedback given" }}
+                </li>
+                {% empty %}
+                <p>No grades have been assigned yet.</p>
+                {% endfor %}
+            </ul>
+        </section>
+        <section class="assessment-analytics">
+            <h2>Assessment Analytics</h2>
+            <div id="grade-distribution-chart">Grade distribution chart will be displayed here.</div>
+            <div id="submission-stats-chart">Submission statistics chart will be displayed here.</div>
+        </section>
     </main>
+    <footer>
+        <p>© 2024 EduPlatform. All rights reserved.</p>
+    </footer>
+    <script src="{% static 'js/assessment_detail.js' %}"></script>
 </body>
 </html>

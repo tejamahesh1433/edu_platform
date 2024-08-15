@@ -1,37 +1,53 @@
-/* static/css/course_detail.css */
+/* static/css/teacher_dashboard.css */
 
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #f4f4f4;
 }
 
-.container {
+header {
+    background-color: #5cb85c;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+main {
     padding: 20px;
+    background-color: white;
+    margin: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
+h2 {
+    margin-top: 0;
     color: #333;
 }
 
-.course-info {
-    background-color: #f4f4f4;
-    padding: 15px;
-    border-radius: 5px;
-    margin-bottom: 20px;
+p {
+    color: #555;
 }
 
-.lessons {
+ul {
     list-style-type: none;
     padding: 0;
 }
 
-.lessons li {
-    background-color: #fff;
+ul li {
+    background-color: #e9ecef;
+    margin-bottom: 10px;
     padding: 10px;
-    border-bottom: 1px solid #ddd;
+    border-radius: 5px;
 }
 
-.lessons li:last-child {
-    border-bottom: none;
+section {
+    margin-bottom: 30px;
 }

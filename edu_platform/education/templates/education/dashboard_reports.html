@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/dashboard_reports.css' %}">
+    <title>Dashboard Reports</title>
+</head>
+<body>
+    <header>
+        <h1>Dashboard Reports</h1>
+        <div class="hamburger-menu" onclick="toggleSidebar()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/profile/">Profile</a></li>
+                <li><a href="/settings/">Settings</a></li>
+                <li>
+                    <form method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button type="submit" style="background:none;border:none;color:blue;cursor:pointer;">Logout</button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div class="sidebar" id="sidebar">
+        <a href="/education/teacher_dashboard/">Teacher Dashboard</a>
+        <a href="/education/dashboard/insights/">Dashboard Insights</a>
+        <a href="/education/dashboard/reports/">Dashboard Reports</a>
+        <!-- Add other sidebar links as needed -->
+    </div>
+    <div class="main-content">
+        <div class="notifications">
+            <p>You have new notifications!</p>
+        </div>
+        <main>
+            <section class="reports-overview">
+                <h2>Overview</h2>
+                <p>Summary of recent reports and key metrics.</p>
+                <div id="reports-filter">
+                    <label for="report-type">Filter by:</label>
+                    <select id="report-type">
+                        <option value="all">All Reports</option>
+                        <option value="user">User Reports</option>
+                        <option value="system">System Reports</option>
+                    </select>
+                    <label for="report-date">Date:</label>
+                    <input type="date" id="report-date">
+                    <button onclick="filterReports()">Apply Filters</button>
+                </div>
+            </section>
+            <section class="user-reports">
+                <h2>User Reports</h2>
+                <p>Detailed statistics on user activities and reports.</p>
+                <div id="user-reports-chart">User reports chart will be displayed here.</div>
+                <button onclick="exportReport('user')">Export User Report</button>
+            </section>
+            <section class="system-reports">
+                <h2>System Reports</h2>
+                <p>Analysis of system performance and reports.</p>
+                <div id="system-reports-chart">System reports chart will be displayed here.</div>
+                <button onclick="exportReport('system')">Export System Report</button>
+            </section>
+        </main>
+    </div>
+    <footer>
+        <p>© 2024 EduPlatform. All rights reserved.</p>
+    </footer>
+    <script src="{% static 'js/dashboard_reports.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/dashboard_insights.css' %}">
+    <title>Dashboard Insights</title>
+</head>
+<body>
+    <header>
+        <h1>Dashboard Insights</h1>
+        <div class="hamburger-menu" onclick="toggleSidebar()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/profile/">Profile</a></li>
+                <li><a href="/settings/">Settings</a></li>
+                <li>
+                    <form method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button type="submit" style="background:none;border:none;color:blue;cursor:pointer;">Logout</button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div class="sidebar" id="sidebar">
+        <a href="/education/teacher_dashboard/">Teacher Dashboard</a>
+        <a href="/education/dashboard/insights/">Dashboard Insights</a>
+        <a href="/education/courses/manage/">Manage Courses</a>
+        <a href="/education/notifications/">Notifications</a>
+        <a href="/education/assessment/analytics/">Assessment Analytics</a>
+        <a href="/education/content/creation/">Create Interactive Content</a>
+        <a href="/education/live/tools/">Live Teaching Tools</a>
+        <a href="/education/automation/tools/">Classroom Automation</a>
+        <a href="/education/student/engagement/">Student Engagement</a>
+        <a href="/education/resource/development/">Resource Development</a>
+        <a href="/education/collaboration/">Collaborative Networks</a>
+        <a href="/education/improvement/programs/">Professional Development</a>
+        <a href="/education/adaptive_learning/">Adaptive Learning Paths</a>
+        <a href="/education/virtual_classroom/">Virtual Classroom</a>
+        <a href="/education/progress_tracker/">Learning Progress</a>
+        <a href="/education/game_based_learning/">Game-Based Learning</a>
+        <a href="/education/augmented_reality/">Augmented Reality</a>
+        <a href="/education/forums/">Interactive Forums</a>
+        <a href="/education/multimedia_library/">Multimedia Library</a>
+        <a href="/education/collaboration_tools/">Peer Collaboration</a>
+        <a href="/education/external_tools/">Integrated Learning Tools</a>
+        <a href="/education/schedule/">Personal Schedule</a>
+        <a href="/education/mental_health_resources/">Mental Health Support</a>
+    </div>
+    <div class="main-content">
+        <div class="notifications">
+            <p>You have new notifications!</p>
+        </div>
+        <main>
+            <section class="insights-overview">
+                <h2>Overview</h2>
+                <p>Summary of recent activities and key metrics.</p>
+                <div id="recent-activities">
+                    <h3>Recent Activities</h3>
+                    <ul>
+                        <li>New assessment created for Math 101.</li>
+                        <li>5 students enrolled in History 201.</li>
+                        <li>New content added to the Science course.</li>
+                    </ul>
+                </div>
+            </section>
+            <section class="user-engagement">
+                <h2>User Engagement</h2>
+                <p>Detailed statistics on user interactions and engagement.</p>
+                <div id="engagement-chart">Engagement chart will be displayed here.</div>
+            </section>
+            <section class="performance-metrics">
+                <h2>Performance Metrics</h2>
+                <p>Analysis of user performance and progress.</p>
+                <div id="performance-chart">Performance chart will be displayed here.</div>
+            </section>
+            <section class="custom-widgets">
+                <h2>Custom Widgets</h2>
+                <p>Customize your dashboard with the widgets you need.</p>
+                <div class="widget-container">
+                    <div class="widget" id="widget-1">Widget 1</div>
+                    <div class="widget" id="widget-2">Widget 2</div>
+                    <div class="widget" id="widget-3">Widget 3</div>
+                </div>
+            </section>
+            <section class="quick-links">
+                <h2>Quick Links</h2>
+                <ul>
+                    <li><a href="/education/content/creation/">Create New Content</a></li>
+                    <li><a href="/education/assessment/analytics/">View Assessment Analytics</a></li>
+                    <li><a href="/education/schedule/">View Personal Schedule</a></li>
+                </ul>
+            </section>
+        </main>
+    </div>
+    <footer>
+        <p>© 2024 EduPlatform. All rights reserved.</p>
+    </footer>
+    <script src="{% static 'js/dashboard_insights.js' %}"></script>
+</body>
+</html>

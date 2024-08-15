@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import reverse_lazy
 
+# Custom Login and Logout Views
 class CustomLoginView(LoginView):
     template_name = 'registration/login.html'
 
@@ -24,13 +25,13 @@ class CustomLogoutView(LogoutView):
         print("CustomLoginView is being used")
         return super().form_valid(form)
 
+# Student Dashboard View
 @login_required
 def student_dashboard(request):
     user = request.user
     if not user.is_student:
         return redirect('teacher_dashboard')
 
-    # Add any additional context if necessary
     courses = Enrollment.objects.filter(student=user).select_related('course')
     notifications = Notification.objects.filter(user=user, read=False)
 
@@ -40,13 +41,13 @@ def student_dashboard(request):
     }
     return render(request, 'education/student_dashboard.html', context)
 
+# Teacher Dashboard View
 @login_required
 def teacher_dashboard(request):
     user = request.user
     if not user.is_teacher:
         return redirect('student_dashboard')
 
-    # Add any additional context if necessary
     courses = Course.objects.filter(teacher=user)
     notifications = Notification.objects.filter(user=user, read=False)
 
@@ -56,6 +57,7 @@ def teacher_dashboard(request):
     }
     return render(request, 'education/teacher_dashboard.html', context)
 
+# Manage Courses View
 @login_required
 def manage_courses(request):
     user = request.user
@@ -68,6 +70,7 @@ def manage_courses(request):
     }
     return render(request, 'education/manage_courses.html', context)
 
+# Course Detail View
 @login_required
 def course_detail(request, course_id):
     course = get_object_or_404(Course, id=course_id)
@@ -84,6 +87,7 @@ def course_detail(request, course_id):
     }
     return render(request, 'education/course_detail.html', context)
 
+# Assessment Detail View
 @login_required
 def assessment_detail(request, assessment_id):
     assessment = get_object_or_404(Assessment, id=assessment_id)
@@ -98,6 +102,7 @@ def assessment_detail(request, assessment_id):
     }
     return render(request, 'education/assessment_detail.html', context)
 
+# Forum Detail View
 @login_required
 def forum_detail(request, forum_id):
     forum = get_object_or_404(Forum, id=forum_id)
@@ -112,6 +117,7 @@ def forum_detail(request, forum_id):
     }
     return render(request, 'education/forum_detail.html', context)
 
+# Create Post View
 @login_required
 def create_post(request, forum_id):
     forum = get_object_or_404(Forum, id=forum_id)
@@ -121,6 +127,7 @@ def create_post(request, forum_id):
         return redirect('forum_detail', forum_id=forum.id)
     return render(request, 'education/create_post.html', {'forum': forum})
 
+# Create Comment View
 @login_required
 def create_comment(request, post_id):
     post = get_object_or_404(Post, id=post_id)
@@ -130,14 +137,41 @@ def create_comment(request, post_id):
         return redirect('forum_detail', forum_id=post.forum.id)
     return render(request, 'education/create_comment.html', {'post': post})
 
+# Notifications View
 @login_required
 def notifications(request):
     notifications = Notification.objects.filter(user=request.user)
     return render(request, 'education/notifications.html', {'notifications': notifications})
 
+# Mark Notification as Read View
 @login_required
 def mark_notification_read(request, notification_id):
     notification = get_object_or_404(Notification, id=notification_id, user=request.user)
     notification.read = True
     notification.save()
     return redirect('notifications')
+
+# Dashboard Insights View
+@login_required
+def dashboard_insights(request):
+    return render(request, 'education/dashboard_insights.html')
+
+# Dashboard Reports View
+@login_required
+def dashboard_reports(request):
+    return render(request, 'education/dashboard_reports.html')
+
+# Adaptive Learning View
+@login_required
+def adaptive_learning(request):
+    return render(request, 'education/adaptive_learning.html')
+
+# Dashboard Overview View
+@login_required
+def dashboard_overview(request):
+    return render(request, 'education/dashboard_overview.html')
+
+# Dashboard Scheduling View
+@login_required
+def dashboard_scheduling(request):
+    return render(request, 'education/dashboard_scheduling.html')

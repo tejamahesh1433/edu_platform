@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "education",
+    "channels",
 ]
 
 MIDDLEWARE = [
@@ -70,6 +71,16 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "edu_platform.wsgi.application"
 
+ASGI_APPLICATION = 'edu_platform.asgi.application'
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases

@@ -5,33 +5,74 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/teacher_dashboard.css' %}">
-    <title>Course Detail</title>
+    <title>Course Detail - {{ course.title }}</title>
 </head>
 <body>
     <header>
         <h1>{{ course.title }}</h1>
     </header>
     <main>
-        <section>
-            <h2>Course Description</h2>
-            <p>{{ course.description }}</p>
+        <section class="course-overview">
+            <h2>Course Overview</h2>
+            <p><strong>Description:</strong> {{ course.description }}</p>
+            <p><strong>Instructor:</strong> {{ course.instructor.name }}</p>
+            <p><strong>Duration:</strong> {{ course.duration }} weeks</p>
+            <p><strong>Start Date:</strong> {{ course.start_date }}</p>
         </section>
-        <section>
+        <section class="course-materials">
+            <h2>Course Materials</h2>
+            <ul>
+                {% for material in course_materials %}
+                <li><a href="{{ material.file.url }}">{{ material.title }}</a> - {{ material.description }}</li>
+                {% empty %}
+                <p>No materials available for this course.</p>
+                {% endfor %}
+            </ul>
+        </section>
+        <section class="assessments">
             <h2>Assessments</h2>
             <ul>
                 {% for assessment in assessments %}
                 <li><a href="{% url 'assessment_detail' assessment.id %}">{{ assessment.title }}</a></li>
+                {% empty %}
+                <p>No assessments available for this course.</p>
                 {% endfor %}
             </ul>
         </section>
-        <section>
+        <section class="forums">
             <h2>Forums</h2>
             <ul>
                 {% for forum in forums %}
                 <li><a href="{% url 'forum_detail' forum.id %}">{{ forum.title }}</a></li>
+                {% empty %}
+                <p>No forums available for this course.</p>
+                {% endfor %}
+            </ul>
+        </section>
+        <section class="student-enrollment">
+            <h2>Enrolled Students</h2>
+            <ul>
+                {% for student in students %}
+                <li>{{ student.username }} - {% if student.is_active %}Active{% else %}Inactive{% endif %}</li>
+                {% empty %}
+                <p>No students enrolled in this course.</p>
+                {% endfor %}
+            </ul>
+        </section>
+        <section class="announcements">
+            <h2>Announcements</h2>
+            <ul>
+                {% for announcement in announcements %}
+                <li><strong>{{ announcement.title }}</strong> - {{ announcement.date }}<br>
+                {{ announcement.content }}</li>
+                {% empty %}
+                <p>No announcements for this course.</p>
                 {% endfor %}
             </ul>
         </section>
     </main>
+    <footer>
+        <p>© 2024 EduPlatform. All rights reserved.</p>
+    </footer>
 </body>
 </html>

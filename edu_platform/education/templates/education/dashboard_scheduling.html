@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/dashboard_scheduling.css' %}">
+    <title>Dashboard Scheduling</title>
+</head>
+<body>
+    <header>
+        <h1>Dashboard Scheduling</h1>
+        <div class="hamburger-menu" onclick="toggleSidebar()" aria-label="Toggle sidebar">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/profile/">Profile</a></li>
+                <li><a href="/settings/">Settings</a></li>
+                <li>
+                    <form method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button type="submit" style="background:none;border:none;color:blue;cursor:pointer;">Logout</button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div class="sidebar" id="sidebar">
+        <a href="/education/teacher_dashboard/">Teacher Dashboard</a>
+        <a href="/education/dashboard/insights/">Dashboard Insights</a>
+        <a href="/education/dashboard/reports/">Dashboard Reports</a>
+        <a href="/dashboard/scheduling/">Scheduling</a>
+        <!-- Add other sidebar links as needed -->
+    </div>
+    <div class="main-content">
+        <div class="notifications">
+            <p>You have new notifications!</p>
+        </div>
+        <main>
+            <section class="scheduling-overview">
+                <h2>Scheduling Overview</h2>
+                <div class="controls">
+                    <button onclick="prevDate()" aria-label="Previous date">&lt;</button>
+                    <input type="text" id="search-bar" placeholder="Search events..." aria-label="Search events">
+                    <select id="view-select" aria-label="Select calendar view">
+                        <option value="day">Day</option>
+                        <option value="week">Week</option>
+                        <option value="month">Month</option>
+                    </select>
+                    <select id="category-filter" aria-label="Filter by category">
+                        <option value="all">All Categories</option>
+                        <option value="class">Classes</option>
+                        <option value="meeting">Meetings</option>
+                        <option value="deadline">Deadlines</option>
+                    </select>
+                    <button onclick="nextDate()" aria-label="Next date">&gt;</button>
+                    <button onclick="addEvent()" aria-label="Add new event">Add New Event</button>
+                </div>
+                <div id="calendar">Calendar will be displayed here.</div>
+            </section>
+            <section class="event-summary">
+                <h2>Event Summary</h2>
+                <div class="summary-boxes">
+                    <div class="summary-box">
+                        <p>Total Events</p>
+                        <span id="total-events">0</span>
+                    </div>
+                    <div class="summary-box">
+                        <p>Upcoming Events</p>
+                        <span id="upcoming-events">0</span>
+                    </div>
+                    <div class="summary-box">
+                        <p>Completed Events</p>
+                        <span id="completed-events">0</span>
+                    </div>
+                </div>
+            </section>
+            <section class="upcoming-events">
+                <h2>Upcoming Events</h2>
+                <ul id="event-list" aria-live="polite">
+                    <li>Loading events...</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <!-- Event Details Modal -->
+    <div id="event-modal" class="modal" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()" aria-label="Close">&times;</span>
+            <h2 id="modal-title">Event Title</h2>
+            <p id="modal-date">Event Date</p>
+            <p id="modal-description">Event Description</p>
+        </div>
+    </div>
+    <footer>
+        <p>© 2024 EduPlatform. All rights reserved.</p>
+    </footer>
+
+    <script src="{% static 'js/dashboard_scheduling.js' %}"></script>
+</body>
+</html>
