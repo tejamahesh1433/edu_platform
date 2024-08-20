@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Feedback</title>
+    <link rel="stylesheet" href="{% static 'css/submit_feedback.css' %}">
+</head>
+<body>
+    <div class="feedback-form-container">
+        <h1>Feedback Form</h1>
+        <form method="post" id="feedbackForm">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Submit Feedback</button>
+        </form>
+    </div>
+    <script src="{% static 'js/submit_feedback.js' %}"></script>
+</body>
+</html>

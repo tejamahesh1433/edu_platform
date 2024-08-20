@@ -1,0 +1,170 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/course_syllabus.css' %}">
+    <title>Course Syllabus</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="/">EduPlatform</a>
+            </div>
+            <ul>
+                {% if request.user.is_teacher %}
+                    <li><a href="{% url 'teacher_dashboard' %}">Dashboard</a></li>
+                    <li><a href="{% url 'manage_courses' %}">Manage Courses</a></li>
+                {% elif request.user.is_student %}
+                    <li><a href="{% url 'student_dashboard' %}">Dashboard</a></li>
+                {% endif %}
+                <li><a href="{% url 'notifications' %}">Notifications</a></li>
+                <li>
+                    <form method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button type="submit" style="background:none;border:none;color:blue;cursor:pointer;">Logout</button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="syllabus-header">
+            <h1>Course Syllabus</h1>
+            <p>Welcome to {{ course.title }}! Below you will find the full syllabus for this term.</p>
+        </section>
+
+        <section class="course-info">
+            <h2>Course Information</h2>
+            <ul>
+                <li><strong>Course Title:</strong> {{ course.title }}</li>
+                <li><strong>Instructor:</strong> {{ course.teacher.get_full_name }}</li>
+                <li><strong>Email:</strong> {{ course.teacher.email }}</li>
+                <li><strong>Class Schedule:</strong> Mondays & Wednesdays, 10:00 AM - 12:00 PM</li>
+                <li><strong>Location:</strong> Online / Room 101</li>
+                <li><strong>Office Hours:</strong> Tuesdays 2:00 PM - 4:00 PM</li>
+                <li><strong>Office Location:</strong> Room 302, Main Building</li>
+                <li><strong>Course Prerequisites:</strong> {{ course.prerequisites }}</li>
+                <li><strong>Course Credits:</strong> {{ course.credits }} Credits</li>
+            </ul>
+        </section>
+
+        <section class="course-description">
+            <h2>Course Description</h2>
+            <p>{{ course.description }}</p>
+        </section>
+
+        <section class="course-outline">
+            <h2>Course Outline</h2>
+            <p>This course is structured into the following modules:</p>
+            <ul>
+                {% for week in weeks %}
+                    <li><strong>Week {{ forloop.counter }}:</strong> {{ week.topic }}</li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        <section class="learning-objectives">
+            <h2>Learning Objectives</h2>
+            <p>By the end of this course, students will be able to:</p>
+            <ul>
+                <li>Understand the basic concepts of the subject.</li>
+                <li>Apply advanced theories to real-world scenarios.</li>
+                <li>Analyze case studies critically.</li>
+                <li>Complete a comprehensive project related to the course.</li>
+                <li>Demonstrate practical skills in the subject area.</li>
+            </ul>
+        </section>
+
+        <section class="assignments">
+            <h2>Assignments</h2>
+            <p>The following assignments will be required:</p>
+            <ul>
+                <li><strong>Assignment 1:</strong> Due Week 2 - Research Paper</li>
+                <li><strong>Assignment 2:</strong> Due Week 4 - Case Study Analysis</li>
+                <li><strong>Assignment 3:</strong> Due Week 6 - Project Report</li>
+                <li><strong>Assignment 4:</strong> Due Week 8 - Group Presentation</li>
+            </ul>
+        </section>
+
+        <section class="grading-policy">
+            <h2>Grading Policy</h2>
+            <p>Your final grade will be determined by the following:</p>
+            <ul>
+                <li><strong>Participation:</strong> 10%</li>
+                <li><strong>Assignments:</strong> 30%</li>
+                <li><strong>Mid-Term Exam:</strong> 20%</li>
+                <li><strong>Final Project:</strong> 20%</li>
+                <li><strong>Final Exam:</strong> 20%</li>
+            </ul>
+        </section>
+
+        <section class="course-materials">
+            <h2>Course Materials</h2>
+            <p>The following materials are required for the course:</p>
+            <ul>
+                <li>Textbook: "Introduction to Course Subject"</li>
+                <li>Notebook and writing utensils</li>
+                <li>Laptop with necessary software</li>
+                <li>Access to the online course platform</li>
+                <li>Supplementary readings provided by the instructor</li>
+            </ul>
+        </section>
+
+        <section class="course-policies">
+            <h2>Course Policies</h2>
+            <p>Please be aware of the following policies:</p>
+            <ul>
+                <li><strong>Attendance:</strong> Attendance is mandatory for all classes.</li>
+                <li><strong>Late Work:</strong> Late assignments will be penalized 10% per day.</li>
+                <li><strong>Academic Integrity:</strong> Cheating or plagiarism will not be tolerated.</li>
+                <li><strong>Classroom Etiquette:</strong> Respectful behavior is expected at all times.</li>
+                <li><strong>Use of Technology:</strong> Laptops are allowed for note-taking only.</li>
+                <li><strong>Communication Policy:</strong> Response to emails within 48 hours.</li>
+            </ul>
+        </section>
+
+        <section class="additional-resources">
+            <h2>Additional Resources</h2>
+            <p>The following resources may help you succeed in this course:</p>
+            <ul>
+                <li><a href="http://library.university.edu">University Library</a></li>
+                <li><a href="http://tutoring.university.edu">Tutoring Services</a></li>
+                <li><a href="http://writingcenter.university.edu">Writing Center</a></li>
+                <li><a href="http://counseling.university.edu">Counseling Services</a></li>
+                <li><a href="http://career.university.edu">Career Services</a></li>
+            </ul>
+        </section>
+
+        <section class="important-dates">
+            <h2>Important Dates</h2>
+            <p>Mark your calendar with these key dates:</p>
+            <ul>
+                <li><strong>Course Start Date:</strong> January 15, 2024</li>
+                <li><strong>Mid-Term Exam:</strong> February 15, 2024</li>
+                <li><strong>Final Project Due:</strong> March 20, 2024</li>
+                <li><strong>Final Exam:</strong> March 30, 2024</li>
+                <li><strong>Last Day to Drop:</strong> February 1, 2024</li>
+            </ul>
+        </section>
+
+        <section class="feedback">
+            <h2>Feedback and Support</h2>
+            <p>Your feedback is important to us. Please don't hesitate to reach out with any questions or concerns.</p>
+            <ul>
+                <li><strong>Feedback Sessions:</strong> Available during office hours or by appointment.</li>
+                <li><strong>Support Channels:</strong> Email, course forums, and office hours.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 EduPlatform. All rights reserved.</p>
+    </footer>
+
+    <script src="{% static 'js/course_syllabus.js' %}"></script>
+</body>
+</html>

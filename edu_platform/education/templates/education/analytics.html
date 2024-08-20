@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/analytics.css' %}">
+    <title>Analytics Dashboard</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mb-4">Analytics Dashboard</h1>
+        <div class="row">
+            <div class="col-md-12 mb-3">
+                <button class="btn btn-primary" onclick="loadUserAnalytics()">User Analytics</button>
+                <button class="btn btn-secondary" onclick="loadCourseAnalytics()">Course Analytics</button>
+                <button class="btn btn-success" onclick="loadEngagementAnalytics()">Engagement Analytics</button>
+                <button class="btn btn-info" onclick="loadFinancialAnalytics()">Financial Metrics</button>
+            </div>
+            <div class="col-md-6">
+                <div class="analytics-container">
+                    <h2>User Activity</h2>
+                    <p>Insight into daily active users and session times.</p>
+                    <canvas id="userActivityChart"></canvas>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="analytics-container">
+                    <h2>Course Completion Rates</h2>
+                    <p>Overview of course completion statistics across different disciplines.</p>
+                    <canvas id="courseCompletionChart"></canvas>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="analytics-container">
+                    <h2>Engagement Over Time</h2>
+                    <p>Trends showing how user engagement has evolved over the past year.</p>
+                    <canvas id="engagementChart"></canvas>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="analytics-container">
+                    <h2>Financial Metrics</h2>
+                    <p>Revenue streams and expenditure over different quarters.</p>
+                    <canvas id="financialMetricsChart"></canvas>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="analytics-container">
+                    <h2>Feedback Analysis</h2>
+                    <p>Analysis of user feedback on courses and platform features.</p>
+                    <canvas id="feedbackAnalysisChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{% static 'js/analytics.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grading - Select Course</title>
+    <link rel="stylesheet" href="{% static 'css/grading_courses.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Select a Course to Grade</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Your Courses</h2>
+            <ul>
+                {% for course in courses %}
+                    <li>
+                        <a href="{% url 'grading_course_detail' course.id %}">
+                            {{ course.title }}
+                        </a>
+                    </li>
+                {% empty %}
+                    <li>No courses available.</li>
+                {% endfor %}
+            </ul>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 EduPlatform. All rights reserved.</p>
+    </footer>
+</body>
+</html>

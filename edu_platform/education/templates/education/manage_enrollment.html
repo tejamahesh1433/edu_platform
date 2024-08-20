@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/manage_enrollment.css' %}">
+    <title>Manage Enrollment - {{ course.title }}</title>
+</head>
+<body>
+    <header>
+        <h1>Manage Enrollment for {{ course.title }}</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Enrolled Students</h2>
+            <ul>
+                {% for enrollment in students %}
+                <li>{{ enrollment.student.username }} - {% if enrollment.student.is_active %}Active{% else %}Inactive{% endif %}</li>
+                {% empty %}
+                <p>No students enrolled in this course.</p>
+                {% endfor %}
+            </ul>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 EduPlatform. All rights reserved.</p>
+    </footer>
+</body>
+</html>

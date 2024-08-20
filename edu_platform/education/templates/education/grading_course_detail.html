@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Grading Details</title>
+    <link rel="stylesheet" href="{% static 'css/grading_course_detail.css' %}">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="/teacher_dashboard/">Teacher Dashboard</a></li>
+            <li><a href="{% url 'manage_courses' %}">Manage Courses</a></li>
+            <li><a href="{% url 'grading' %}">Grading</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h1>Grading Details for Course ID: {{ course_id }}</h1>
+        <p>Welcome to the course grading details page. Here you can view all relevant information.</p>
+        <section>
+            <h2>Course Information</h2>
+            <p><strong>Course Title:</strong> {{ course.title }}</p>
+            <p><strong>Instructor:</strong> {{ course.instructor }}</p>
+            <p><strong>Semester:</strong> {{ course.semester }}</p>
+            <p><strong>Course Description:</strong> {{ course.description }}</p>
+            <p><strong>Enrollment Count:</strong> {{ course.enrollment_count }}</p>
+        </section>
+        <section>
+            <h2>Grading Criteria</h2>
+            <ul>
+                <li>Attendance: 10%</li>
+                <li>Assignments: 40%</li>
+                <li>Quizzes: 20%</li>
+                <li>Final Exam: 30%</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Student Grades</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Student ID</th>
+                        <th>Name</th>
+                        <th>Attendance</th>
+                        <th>Assignments</th>
+                        <th>Quizzes</th>
+                        <th>Final Exam</th>
+                        <th>Total Grade</th>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for student in students %}
+                    <tr>
+                        <td>{{ student.id }}</td>
+                        <td>{{ student.name }}</td>
+                        <td>{{ student.attendance }}</td>
+                        <td>{{ student.assignments }}</td>
+                        <td>{{ student.quizzes }}</td>
+                        <td>{{ student.final_exam }}</td>
+                        <td>{{ student.total_grade }}</td>
+                        <td>{{ student.comments }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+        <section>
+            <h2>Feedback</h2>
+            <form action="{% url 'submit_feedback' %}" method="post">
+                {% csrf_token %}
+                <textarea name="feedback" placeholder="Enter feedback here..."></textarea>
+                <button type="submit">Submit Feedback</button>
+            </form>
+        </section>
+    </div>
+    <script src="{% static 'js/grading_course_detail.js' %}"></script>
+</body>
+</html>

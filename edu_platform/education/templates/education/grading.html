@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/grading.css' %}">
+    <title>Grading for {{ course.title }}</title>
+</head>
+<body>
+    <header>
+        <h1>Grading for {{ course.title }}</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Grades</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Student</th>
+                        <th>Assessment</th>
+                        <th>Grade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for grade in grades %}
+                    <tr>
+                        <td>{{ grade.student.username }}</td>
+                        <td>{{ grade.assessment.title }}</td>
+                        <td>{{ grade.grade }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="3">No grades available.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <script src="{% static 'js/grading.js' %}" defer></script>
+
+</body>
+</html>

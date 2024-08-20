@@ -1,0 +1,100 @@
+/* static/css/teacher_dashboard.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #5cb85c;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    position: relative;
+}
+
+header h1 {
+    margin: 0;
+}
+
+.hamburger-menu {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.hamburger-menu div {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 4px 0;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -220px; /* Hide the sidebar off the screen */
+    height: 100%;
+    width: 200px;
+    background-color: #333;
+    color: white;
+    padding-top: 60px;
+    transition: left 0.3s; /* Smooth transition for the sidebar */
+}
+
+.sidebar.active {
+    left: 0; /* Slide the sidebar into view */
+    }
+    
+    .sidebar a {
+        display: block;
+        color: white;
+        padding: 10px;
+        text-decoration: none;
+    }
+    
+    .sidebar a:hover {
+        background-color: #575757;
+    }
+    
+    .main-content {
+        margin-left: 220px;
+        padding: 20px;
+    }
+    
+    .notifications {
+        background-color: #f9edbe;
+        border-left: 6px solid #f0c36d;
+        margin-bottom: 20px;
+        padding: 10px;
+    }
+    
+    section {
+        margin-bottom: 20px;
+    }
+    
+    section h2 {
+        margin-top: 0;
+    }
+    

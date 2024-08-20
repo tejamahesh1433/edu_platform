@@ -136,7 +136,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, "education/static"),
 ]
 
 AUTH_USER_MODEL = 'education.User'
@@ -160,3 +160,5 @@ LOGIN_REDIRECT_URL = get_login_redirect_url
 LOGIN_REDIRECT_URL = 'student_dashboard'
 
 LOGOUT_REDIRECT_URL = 'logout'  # Ensure this points to the custom logout view
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')

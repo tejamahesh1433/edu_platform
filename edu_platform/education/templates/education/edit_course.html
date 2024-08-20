@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/edit_course.css' %}">
+    <title>Edit Course Syllabus</title>
+</head>
+<body>
+    <header>
+        <h1>Edit Syllabus for {{ course.title }}</h1>
+    </header>
+    <main>
+        <form method="post">
+            {% csrf_token %}
+            {% for week in weeks %}
+            <div>
+                <label for="week-{{ week.id }}">Week {{ forloop.counter }}:</label>
+                <input type="text" id="week-{{ week.id }}" name="week-{{ week.id }}" value="{{ week.topic }}">
+            </div>
+            <div>
+                <label for="description">Course Description:</label>
+                <textarea id="description" name="description" rows="4" required>{{ course.description }}</textarea>
+            </div>        
+            {% endfor %}
+            <button type="submit">Save Syllabus</button>
+        </form>
+    </main>
+</body>
+</html>

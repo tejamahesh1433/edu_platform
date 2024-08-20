@@ -19,6 +19,17 @@
             <p><strong>Duration:</strong> {{ course.duration }} weeks</p>
             <p><strong>Start Date:</strong> {{ course.start_date }}</p>
         </section>
+        
+        <!-- Additional Section -->
+        <section class="course-management">
+            <h2>Course Management</h2>
+            <ul>
+                <li><a href="{% url 'edit_course' course.id %}">Edit Course</a></li>
+                <li><a href="{% url 'course_syllabus' course.id %}">Edit Syllabus</a></li>
+                <li><a href="{% url 'manage_enrollment' course.id %}">Manage Enrollment</a></li>
+            </ul>
+        </section>
+
         <section class="course-materials">
             <h2>Course Materials</h2>
             <ul>
